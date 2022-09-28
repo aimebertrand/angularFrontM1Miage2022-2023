@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {Assignment} from "../assignments/assignment.model";
+import {Observable, observable, of} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +28,17 @@ export class AssignmentsService {
   constructor() {
   }
 
-  getAssignments(): Assignment[] {
-    return this.assignments;
+  getAssignments(): Observable<Assignment[]> {
+    return of(this.assignments);
+  }
+
+  addAssignment(assignment: Assignment) : Observable<string> {
+    this.assignments.push(assignment);
+    return of("Assignment ajouté");
+  }
+
+  updateAssignment(assignment: Assignment) : Observable<string> {
+    assignment.rendu = true;
+    return of("Assignment")
   }
 }
