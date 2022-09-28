@@ -68,4 +68,13 @@ export class AssignmentsComponent implements OnInit {
     this.formVisible = false;
   }
 
+  onDeletedAssignment(assignmentdel:Assignment) {
+  for (const assignment of this.assignments) {
+    if (assignment.nom === assignmentdel.nom) {
+      this.assignments.splice(this.assignments.indexOf(assignment), 1);
+      console.log("assignment supprime = " + assignment.nom);
+    }
+  }
+  }
+
 }

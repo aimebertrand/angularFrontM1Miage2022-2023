@@ -9,6 +9,7 @@ import {Assignment} from "../assignment.model";
 export class AddAssignmentComponent implements OnInit {
   @Output() nouvelAssignment = new EventEmitter<Assignment>();
 
+
   nomDevoir: string = '';
   dateDeRendu?:Date;
 
@@ -28,6 +29,8 @@ export class AddAssignmentComponent implements OnInit {
     // this.assignments.push(newAssignment);
 
   }
+
+
   assignmentClique(assignment:Assignment) {
   /*  this.assignmentSelectionne = assignment;
     console.log("assignment clique = " + assignment.nom);*/
