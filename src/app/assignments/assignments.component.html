@@ -12,7 +12,7 @@
     <mat-list-item (click)="assignmentClique(assignment)">
       <p *ngIf="assignment.rendu; else nonsoumis" appRendu>
         {{assignment.nom}}, a été rendu par l'élève.
-        rendu : {{assignment.rendu}}</p>
+        <!--rendu : {{assignment.rendu}}--></p>
       <ng-template #nonsoumis>
         {{assignment.nom}} pas encore rendu.
       </ng-template>

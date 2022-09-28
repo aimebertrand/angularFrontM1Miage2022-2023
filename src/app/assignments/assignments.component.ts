@@ -1,11 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Assignment } from './assignment.model';
+import {AssignmentsService} from "../shared/assignments.service";
 
 @Component({
   selector: 'app-assignments',
   templateUrl: './assignments.component.html',
   styleUrls: ['./assignments.component.css'],
 })
+
+
 export class AssignmentsComponent implements OnInit {
   titre = 'Liste des assignments :';
   //ajoutActive = false;
@@ -14,34 +17,23 @@ export class AssignmentsComponent implements OnInit {
   assignmentSelectionne?:Assignment;
   formVisible = false;
 
-  assignments:Assignment[] = [
-    {
-      nom: 'Devoir Langage C++',
-      dateDeRendu: new Date('2020-11-15'),
-      rendu: false,
-    },
-    {
-      nom: 'Devoir lanagage Scala',
-      dateDeRendu: new Date('2021-12-18'),
-      rendu: false,
-    },
-    {
-      nom: 'Devoir Haskell',
-      dateDeRendu: new Date('2022-10-20'),
-      rendu: true,
-    },
-  ];
+  assignments !: Assignment[];
 
-  constructor() {}
+  constructor(private assignmentService: AssignmentsService) { }
+
+/*  constructor() {}*/
 
   ngOnInit(): void {
-    // appelé juste avant l'affichage
-    /*
-    setTimeout(() => {
-      this.ajoutActive = true;
-    }, 3000);
-    */
+  this.getAssignments();
   }
+
+  getAssignments() {
+    this.assignmentService
+      .getAssignments()
+      .subscribe(assignments => this.assignments = assignments);
+  }
+
+
 
   getAssignmentColor(a: any) {
     return a.rendu ? 'green' : 'red';
@@ -61,11 +53,16 @@ export class AssignmentsComponent implements OnInit {
   }
 
   onNouvelAssignment(assignment:Assignment) {
-    // assignment envoyé par le composant add-assignment
+  /*  // assignment envoyé par le composant add-assignment
     this.assignments.push(assignment);
-
     // on cache le formulaire et on affiche la liste
-    this.formVisible = false;
+    this.formVisible = false;*/
+    this.assignmentService
+      .addAssignment(assignment)
+      .subscribe(
+        message=> console.log(message
+        ));
+    this.formVisible =  false;
   }
 
   onDeletedAssignment(assignmentdel:Assignment) {
