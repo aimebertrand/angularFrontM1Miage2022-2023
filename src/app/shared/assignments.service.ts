@@ -10,16 +10,19 @@ export class AssignmentsService {
 
   assignments: Assignment[] = [
     {
+      id:1,
       nom: 'Devoir Langage C++',
       dateDeRendu: new Date('2020-11-15'),
       rendu: false,
     },
     {
+      id:2,
       nom: 'Devoir lanagage Scala',
       dateDeRendu: new Date('2021-12-18'),
       rendu: false,
     },
     {
+      id:3,
       nom: 'Devoir Haskell',
       dateDeRendu: new Date('2022-10-20'),
       rendu: true,
@@ -48,5 +51,9 @@ export class AssignmentsService {
   deleteAssignment(assignment: Assignment) : Observable<string> {
     this.assignments = this.assignments.filter(a => a !== assignment);
     return of("Assignment supprimé");
+  }
+
+  getAssignment(id: number): Observable<Assignment> {
+    return of(this.assignments.find(assignment => assignment.id === id)!);
   }
 }

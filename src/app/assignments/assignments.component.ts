@@ -49,7 +49,7 @@ export class AssignmentsComponent implements OnInit {
   }
 
   onAddAssignmentBtnClick() {
-    this.formVisible = true;
+    //this.formVisible = true;
   }
 
   onNouvelAssignment(assignment:Assignment) {

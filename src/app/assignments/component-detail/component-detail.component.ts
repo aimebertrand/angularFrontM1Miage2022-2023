@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Assignment} from "../assignment.model";
 import {AssignmentsService} from "../../shared/assignments.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-component-detail',
@@ -9,12 +10,13 @@ import {AssignmentsService} from "../../shared/assignments.service";
 })
 export class ComponentDetailComponent implements OnInit {
 
-  @Input() assignmentTransmis?:Assignment;
+ /* @Input() */assignmentTransmis?:Assignment;
   @Output() deleteAssignment = new EventEmitter<Assignment>();
 
-  constructor(private assignmentService: AssignmentsService) { }
+  constructor(private assignmentService: AssignmentsService, private route : ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.getAssignment();
   }
 
   onAssignmentRendu() {
@@ -27,9 +29,16 @@ export class ComponentDetailComponent implements OnInit {
      this.assignmentTransmis!.rendu = true;
   }
 
+  getAssignment() {
+    const id = +this.route.snapshot.params['id'];
+    this.assignmentService.getAssignment(id).subscribe(assignment => this.assignmentTransmis = assignment);
+  }
+
   onDeleteAssignment() {
-    this.deleteAssignment.emit(this.assignmentTransmis);
+this.assignmentService.deleteAssignment(this.assignmentTransmis!).subscribe(message => console.log(message))
     this.assignmentTransmis = undefined;
+    /*    this.deleteAssignment.emit(this.assignmentTransmis);
+    this.assignmentTransmis = undefined;*/
   }
 
 

@@ -18,6 +18,15 @@ import { AssignmentsComponent } from './assignments/assignments.component';
 import { RenduDirective } from './shared/rendu.directive';
 import { ComponentDetailComponent } from './assignments/component-detail/component-detail.component';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
+import {RouterModule, Routes} from '@angular/router';
+
+
+const routes: Routes = [
+  {path: '', component: AssignmentsComponent},
+  {path: 'home', component: AssignmentsComponent},
+  {path:'add', component: AddAssignmentComponent},
+  {path:'assignment/:id', component: ComponentDetailComponent}
+]
 
 @NgModule({
   declarations: [
@@ -34,7 +43,8 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
     MatButtonModule, MatIconModule, MatDividerModule,
     FormsModule, MatFormFieldModule, MatInputModule,
     MatDatepickerModule, MatNativeDateModule,
-    MatListModule, MatCardModule, MatCheckboxModule
+    MatListModule, MatCardModule, MatCheckboxModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
