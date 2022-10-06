@@ -19,6 +19,7 @@ import { RenduDirective } from './shared/rendu.directive';
 import { ComponentDetailComponent } from './assignments/component-detail/component-detail.component';
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 import {RouterModule, Routes} from '@angular/router';
+import { EditAssignmentComponent } from './edit-assignment/edit-assignment.component';
 
 
 const routes: Routes = [
@@ -35,6 +36,7 @@ const routes: Routes = [
     RenduDirective,
     ComponentDetailComponent,
     AddAssignmentComponent,
+    EditAssignmentComponent,
   ],
   imports: [
     BrowserModule,
