@@ -1,6 +1,9 @@
+<div class="container">
 <h1>
   <nav><a routerLink="/home">{{title}}</a></nav>
 </h1>
+  <mat-slide-toggle (toggleChange)="login()" color="primary" onto>Login</mat-slide-toggle>
+</div>
 
 <router-outlet></router-outlet>
 <!--<app-assignments></app-assignments>-->

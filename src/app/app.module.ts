@@ -21,6 +21,7 @@ import { AddAssignmentComponent } from './assignments/add-assignment/add-assignm
 import {RouterModule, Routes} from '@angular/router';
 import { EditAssignmentComponent } from './edit-assignment/edit-assignment.component';
 import { AuthGuard} from "./shared/auth.guard";
+import {MatSlideToggleModule} from "@angular/material/slide-toggle";
 
 const routes: Routes = [
   {path: '', component: AssignmentsComponent},
@@ -51,6 +52,7 @@ const routes: Routes = [
     FormsModule, MatFormFieldModule, MatInputModule,
     MatDatepickerModule, MatNativeDateModule,
     MatListModule, MatCardModule, MatCheckboxModule,
+    MatSlideToggleModule,
     RouterModule.forRoot(routes)
   ],
   providers: [],

@@ -6,4 +6,3 @@ export class Assignment {
   dateDeRendu?:Date;
   rendu?:boolean;
 }
-

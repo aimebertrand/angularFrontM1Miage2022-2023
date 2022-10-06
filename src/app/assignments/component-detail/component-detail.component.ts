@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {Assignment} from "../assignment.model";
 import {AssignmentsService} from "../../shared/assignments.service";
 import {ActivatedRoute, Router} from "@angular/router";
+import {AuthService} from "../../shared/auth.service";
 
 @Component({
   selector: 'app-component-detail',
@@ -13,7 +14,7 @@ export class ComponentDetailComponent implements OnInit {
  /* @Input() */assignmentTransmis?:Assignment;
   @Output() deleteAssignment = new EventEmitter<Assignment>();
 
-  constructor(private assignmentService: AssignmentsService, private route : ActivatedRoute, private router:Router) { }
+  constructor(private assignmentService: AssignmentsService,private authService : AuthService, private route : ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
     this.getAssignment();
@@ -44,5 +45,13 @@ this.assignmentService.deleteAssignment(this.assignmentTransmis!).subscribe(mess
     this.assignmentTransmis = undefined;*/
   }
 
+  onClickEdit() {
+    this.router.navigate(['/assignment', this.assignmentTransmis!.id, 'edit'],
+      {queryParams: {nom: this.assignmentTransmis!.nom}, fragment:'edition'});
+  }
+
+  isAdmin() : boolean {
+    return this.authService.loggedIn;
+  }
 
 }
