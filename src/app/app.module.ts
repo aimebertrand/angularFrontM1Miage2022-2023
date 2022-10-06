@@ -20,14 +20,18 @@ import { ComponentDetailComponent } from './assignments/component-detail/compone
 import { AddAssignmentComponent } from './assignments/add-assignment/add-assignment.component';
 import {RouterModule, Routes} from '@angular/router';
 import { EditAssignmentComponent } from './edit-assignment/edit-assignment.component';
-
+import { AuthGuard} from "./shared/auth.guard";
 
 const routes: Routes = [
   {path: '', component: AssignmentsComponent},
   {path: 'home', component: AssignmentsComponent},
   {path:'add', component: AddAssignmentComponent},
   {path:'assignment/:id', component: ComponentDetailComponent},
-  {path: 'assignment/:id/edit', component: EditAssignmentComponent}
+  {
+    path: 'assignment/:id/edit',
+    component: EditAssignmentComponent,
+    canActivate: [AuthGuard]
+  }
 ]
 
 @NgModule({
