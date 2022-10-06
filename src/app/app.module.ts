@@ -26,7 +26,8 @@ const routes: Routes = [
   {path: '', component: AssignmentsComponent},
   {path: 'home', component: AssignmentsComponent},
   {path:'add', component: AddAssignmentComponent},
-  {path:'assignment/:id', component: ComponentDetailComponent}
+  {path:'assignment/:id', component: ComponentDetailComponent},
+  {path: 'assignment/:id/edit', component: EditAssignmentComponent}
 ]
 
 @NgModule({
